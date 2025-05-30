@@ -9,19 +9,21 @@ module.exports = {
     clean: true,
   },
   mode: 'development',
+  devtool: 'inline-source-map',
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
+      inject: 'body'
     }),
   ],
   devServer: {
     static: {
-      directory: path.resolve(__dirname, 'dist'),
+      directory: path.join(__dirname, 'dist'),
     },
-    port: 3000,
-    open: true,
     compress: true,
+    port: 3000,
     hot: true,
+    open: true,
   },
   module: {
     rules: [
@@ -41,4 +43,7 @@ module.exports = {
       },
     ],
   },
+  experiments: {
+    topLevelAwait: true,
+  }
 };
